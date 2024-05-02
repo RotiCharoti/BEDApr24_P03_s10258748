@@ -1,10 +1,11 @@
-//The Model in MVC: In the Model-View-Controller (MVC) design pattern, the Model represents the data and business logic of your application. 
-//It's responsible for:
+// Model contains files representing data structures such as book.js
+
+// Model represents the data and business logic of your application. It's responsible for:
 // Managing data (retrieval, manipulation, storage)
 // Defining data structures (like the Book class)
 // Encapsulating data access logic (e.g., database interaction)
 
-//Implementing a Book Model:
+// Implementing Book Model
 // Remember: This is a simplified example using an in-memory array. In a real-world scenario, you would use a database to store books data persistently.
 const books = [
     { id: 1, title: "The Lord of the Rings", author: "J.R.R. Tolkien" },

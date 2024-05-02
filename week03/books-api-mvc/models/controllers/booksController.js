@@ -1,7 +1,6 @@
-//Importing Book Class from models/book.js file
+// Importing Book class from models/book.js
 const Book = require("../models/book");
 
-//Defining functions for each CRUD operation
 const Book = require("../models/book");
 
 const getAllBooks = async (req, res) => {
