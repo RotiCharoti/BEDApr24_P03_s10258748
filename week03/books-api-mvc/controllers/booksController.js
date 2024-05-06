@@ -1,6 +1,3 @@
-// Importing Book class from models/book.js
-const Book = require("../models/book");
-
 const Book = require("../models/book");
 
 const getAllBooks = async (req, res) => {
