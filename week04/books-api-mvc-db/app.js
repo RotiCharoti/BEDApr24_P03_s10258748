@@ -32,6 +32,7 @@ app.get("/users/:id", usersController.getUserById); // Get user by ID
 app.put("/users/:id", usersController.updateUser); // Update user
 app.delete("/users/:id", usersController.deleteUser); // Delete user
 app.get("/users/search", usersController.searchUsers);
+app.get("/users/with-books", usersController.getUsersWithBooks);
 
 app.listen(port, async () => {
     try {

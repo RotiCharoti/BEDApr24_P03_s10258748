@@ -1,8 +1,8 @@
-const Users = require("../models/user");
+const User = require("../models/user");
 
 const getAllUsers = async (req, res) => {
   try {
-    const users = await Users.getAllUsers();
+    const users = await User.getAllUsers();
     res.json(users);
   } catch (error) {
     console.error(error);
@@ -70,13 +70,36 @@ const searchUsers = async (req, res) => {
   const searchTerm = req.query.searchTerm; // Extract search term from query params
 
   try {
-    const users = await Users.searchUsers(searchTerm); // Corrected from `User` to `Users`
+    const users = await Users.searchUsers(searchTerm); 
     res.json(users);
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Error searching users" });
   }
+
+  async function searchUsers(req, res) {
+    const searchTerm = req.query.searchTerm; // Extract search term from query params
+  
+    try {    
+      const users = await User.searchUsers(searchTerm);
+      res.json(users);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Error searching users" });
+    }
+}
 };
+
+async function getUsersWithBooks(req, res) {
+  try {
+    const users = await User.getUsersWithBooks();
+    res.json(users);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Error fetching users with books" });
+  }
+};
+
 
 module.exports = {
   getAllUsers,
@@ -85,4 +108,5 @@ module.exports = {
   updateUser,
   deleteUser,
   searchUsers,
+  getUsersWithBooks,
 };
