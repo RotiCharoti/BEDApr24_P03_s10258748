@@ -150,6 +150,6 @@ class User {
       await connection.close();
     }
   }
-}
+};
 
 module.exports = User;

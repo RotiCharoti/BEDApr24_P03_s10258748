@@ -8,6 +8,14 @@ const staticMiddleware = express.static("public"); // Path to the public folder
 const usersController = require("./controllers/usersController");
 
 const app = express();
+
+// For Swagger API documentation
+const swaggerUi = require("swagger-ui-express");
+const swaggerDocument = require("./swagger-output.json"); // Import generated spec
+
+// Serve the Swagger UI at a specific route
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
 const port = 3000;
 
 // Include body-parser middleware to handle JSON data
@@ -17,10 +25,10 @@ app.use(staticMiddleware); // Mount the static middleware
 
 app.get("/books", booksController.getAllBooks);
 app.get("/users", usersController.getAllUsers); // Get all users
-app.get("/books/:id", booksController.getBookById);
 app.get("/users/search", usersController.searchUsers);
-app.get("/users/:id", usersController.getUserById); // Get user by ID
 app.get("/users/with-books", usersController.getUsersWithBooks);
+app.get("/books/:id", booksController.getBookById);
+app.get("/users/:id", usersController.getUserById); // Get user by ID
 
 app.post("/books", validateBook, booksController.createBook); // POST for creating books (can handle JSON data)
 app.post("/users", usersController.createUser); // Create user
