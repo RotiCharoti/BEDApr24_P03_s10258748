@@ -13,7 +13,7 @@ const getAllUsers = async (req, res) => {
 const getUserById = async (req, res) => {
   const userId = parseInt(req.params.id);
   try {
-    const user = await Users.getUserById(userId); // Corrected from `User` to `Users`
+    const user = await User.getUserById(userId); // Corrected from `User` to `Users`
     if (!user) {
       return res.status(404).send("User not found");
     }
@@ -27,7 +27,7 @@ const getUserById = async (req, res) => {
 const createUser = async (req, res) => {
   const newUser = req.body;
   try {
-    const createdUser = await Users.createUser(newUser); // Corrected from `Book` to `Users`
+    const createdUser = await User.createUser(newUser); // Corrected from `Book` to `Users`
     res.status(201).json(createdUser);
   } catch (error) {
     console.error(error);
@@ -40,7 +40,7 @@ const updateUser = async (req, res) => {
   const newUserData = req.body;
 
   try {
-    const updatedUser = await Users.updateUser(userId, newUserData); // Corrected from `User.updateBook` to `Users.updateUser`
+    const updatedUser = await User.updateUser(userId, newUserData); // Corrected from `User.updateBook` to `Users.updateUser`
     if (!updatedUser) {
       return res.status(404).send("User not found");
     }
@@ -53,9 +53,9 @@ const updateUser = async (req, res) => {
 
 const deleteUser = async (req, res) => {
   const userId = parseInt(req.params.id); // Corrected variable name from `userIdId` to `userId`
-
+// 
   try {
-    const success = await Users.deleteUser(userId); // Corrected from `User` to `Users`
+    const success = await User.deleteUser(userId); // Corrected from `User` to `Users`
     if (!success) {
       return res.status(404).send("User not found");
     }
@@ -66,18 +66,7 @@ const deleteUser = async (req, res) => {
   }
 };
 
-const searchUsers = async (req, res) => {
-  const searchTerm = req.query.searchTerm; // Extract search term from query params
-
-  try {
-    const users = await Users.searchUsers(searchTerm); 
-    res.json(users);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Error searching users" });
-  }
-
-  async function searchUsers(req, res) {
+async function searchUsers(req, res) {
     const searchTerm = req.query.searchTerm; // Extract search term from query params
   
     try {    
@@ -88,7 +77,6 @@ const searchUsers = async (req, res) => {
       res.status(500).json({ message: "Error searching users" });
     }
 }
-};
 
 async function getUsersWithBooks(req, res) {
   try {

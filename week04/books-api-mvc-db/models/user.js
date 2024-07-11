@@ -42,7 +42,7 @@ class User {
 
     await connection.close();
 
-    return new Users(result.recordset[0].id, user.username, user.email);
+    return new User(result.recordset[0].id, user.username, user.email);
   }
 
   // Get All Users
@@ -56,7 +56,7 @@ class User {
     await connection.close();
 
     return result.recordset.map(
-      (row) => new Users(row.id, row.username, row.email)
+      (row) => new User(row.id, row.username, row.email)
     );
   }
 
@@ -73,7 +73,7 @@ class User {
     await connection.close();
 
     return result.recordset[0]
-      ? new Users(result.recordset[0].id, result.recordset[0].username, result.recordset[0].email)
+      ? new User(result.recordset[0].id, result.recordset[0].username, result.recordset[0].email)
       : null;
   }
 
